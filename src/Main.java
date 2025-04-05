@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
+        // Пример использования паттерна Proxy
         Image image1 = new ImageProxy("house1.jpg");
         Image image2 = new ImageProxy("apartment2.jpg");
 
@@ -14,7 +15,16 @@ public class Main {
 
         System.out.println("==== Пользователь снова нажал на house1.jpg ====");
 
-        // Повторный вызов – уже без повторной загрузки
+        // Повторный вызов — уже без повторной загрузки
         image1.displayFullImage();
+
+        // Пример использования Protection Proxy для загрузки изображений
+        System.out.println("\n==== Загрузка изображений с Protection Proxy ====");
+
+        Uploader uploader1 = new UploaderProxy(true);  // агент залогинен
+        uploader1.uploadImage("villa.jpg");
+
+        Uploader uploader2 = new UploaderProxy(false);  // агент не залогинен
+        uploader2.uploadImage("secret-house.jpg");
     }
 }
